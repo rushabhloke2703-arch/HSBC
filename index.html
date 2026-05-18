@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Corporate Event Reveal</title>  <style>
+  <title>Luxury Event Reveal</title>  <style>
     * {
       box-sizing: border-box;
     }
@@ -12,193 +12,483 @@
       width: 100%;
       min-height: 100%;
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #080814;
-      color: #ffffff;
-      overflow-x: hidden;
+      font-family: Georgia, 'Times New Roman', serif;
+      background: #070403;
+      color: #fff8df;
+      overflow: hidden;
     }
 
     body {
       background:
-        radial-gradient(circle at 15% 15%, rgba(255, 196, 87, 0.28), transparent 28%),
-        radial-gradient(circle at 85% 20%, rgba(107, 92, 255, 0.32), transparent 28%),
-        radial-gradient(circle at 50% 90%, rgba(0, 221, 255, 0.22), transparent 32%),
-        linear-gradient(135deg, #080814 0%, #10102a 45%, #070712 100%);
+        radial-gradient(circle at 50% 18%, rgba(255, 211, 118, 0.28), transparent 24%),
+        radial-gradient(circle at 18% 80%, rgba(179, 119, 25, 0.24), transparent 28%),
+        radial-gradient(circle at 82% 72%, rgba(255, 238, 160, 0.16), transparent 28%),
+        linear-gradient(135deg, #090402 0%, #150b04 45%, #020101 100%);
     }
 
     .page {
       position: relative;
+      width: 100vw;
       min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 28px 18px;
       overflow: hidden;
     }
 
-    .orb {
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.08);
-      filter: blur(8px);
-      animation: floatOrb 8s ease-in-out infinite;
+    .gold-dust {
+      position: fixed;
+      inset: 0;
       pointer-events: none;
+      background-image:
+        radial-gradient(circle, rgba(255, 223, 143, 0.55) 0 1px, transparent 1.8px),
+        radial-gradient(circle, rgba(255, 255, 255, 0.26) 0 1px, transparent 1.6px);
+      background-size: 88px 88px, 132px 132px;
+      animation: dustFloat 12s linear infinite;
+      opacity: 0.42;
+      z-index: 1;
     }
 
-    .orb.one {
-      top: 10%;
-      left: 6%;
-      background: rgba(255, 190, 80, 0.16);
+    @keyframes dustFloat {
+      from { transform: translateY(0); }
+      to { transform: translateY(-120px); }
     }
 
-    .orb.two {
-      right: 7%;
-      bottom: 14%;
-      background: rgba(90, 230, 255, 0.16);
-      animation-delay: 1.4s;
-    }
-
-    .orb.three {
-      right: 18%;
-      top: 12%;
-      width: 100px;
-      height: 100px;
-      background: rgba(174, 113, 255, 0.18);
-      animation-delay: 2.2s;
-    }
-
-    @keyframes floatOrb {
-      0%, 100% {
-        transform: translateY(0) scale(1);
-      }
-      50% {
-        transform: translateY(-24px) scale(1.08);
-      }
-    }
-
-    .wrap {
-      position: relative;
-      z-index: 2;
-      width: min(1120px, 100%);
-      display: grid;
-      grid-template-columns: 1fr 520px;
-      gap: 42px;
+    .screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
       align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.02);
+      transition: opacity 0.75s ease, transform 0.75s ease, visibility 0.75s ease;
+      z-index: 2;
     }
 
-    .content {
-      padding: 10px;
+    .screen.active {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+
+    .castle-screen {
+      flex-direction: column;
+      gap: 24px;
+      text-align: center;
+    }
+
+    .intro-copy {
+      position: relative;
+      z-index: 4;
+      max-width: 720px;
+      animation: introRise 1s ease both;
+    }
+
+    @keyframes introRise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .eyebrow {
       display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 14px;
+      padding: 9px 16px;
+      border: 1px solid rgba(255, 219, 133, 0.38);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      backdrop-filter: blur(12px);
-      color: #ffe3a3;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.7px;
+      background: rgba(255, 221, 142, 0.08);
+      color: #ffd875;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
     }
 
     h1 {
-      margin: 22px 0 14px;
-      font-size: clamp(38px, 6vw, 72px);
-      line-height: 0.95;
-      letter-spacing: -2.8px;
+      margin: 18px 0 10px;
+      font-size: clamp(34px, 6vw, 68px);
+      line-height: 0.98;
+      letter-spacing: -1.8px;
+      text-shadow: 0 12px 38px rgba(0, 0, 0, 0.55);
     }
 
-    .gradient-text {
-      background: linear-gradient(90deg, #ffffff, #ffe1a0, #8eeeff);
+    .gold-text {
+      background: linear-gradient(90deg, #fff8d9, #d7a73b, #fff0a9, #9c681d);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
     .subtitle {
-      max-width: 560px;
-      margin: 0;
-      color: rgba(255, 255, 255, 0.76);
-      font-size: 18px;
+      margin: 0 auto;
+      max-width: 610px;
+      color: rgba(255, 248, 223, 0.72);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
       line-height: 1.55;
     }
 
-    .mini-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
-    }
-
-    .mini-card {
-      min-width: 132px;
-      padding: 14px 16px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.09);
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      backdrop-filter: blur(14px);
-    }
-
-    .mini-card strong {
-      display: block;
-      color: #ffffff;
-      font-size: 15px;
-      margin-bottom: 3px;
-    }
-
-    .mini-card span {
-      color: rgba(255, 255, 255, 0.62);
-      font-size: 12px;
-    }
-
-    .card-area {
+    .castle-wrap {
       position: relative;
+      width: min(86vw, 620px);
+      height: min(62vh, 520px);
+      min-height: 390px;
       display: flex;
+      align-items: flex-end;
       justify-content: center;
+      perspective: 1100px;
+      animation: castleGlow 3.8s ease-in-out infinite;
+    }
+
+    @keyframes castleGlow {
+      0%, 100% { filter: drop-shadow(0 0 28px rgba(255, 197, 78, 0.24)); }
+      50% { filter: drop-shadow(0 0 54px rgba(255, 224, 142, 0.36)); }
+    }
+
+    .castle {
+      position: relative;
+      width: 82%;
+      height: 80%;
+    }
+
+    .castle-base {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 78%;
+      height: 66%;
+      transform: translateX(-50%);
+      border-radius: 28px 28px 12px 12px;
+      background: linear-gradient(145deg, #5f390b, #c8912d 36%, #ffe09a 52%, #8b5612 78%, #3a1d05);
+      border: 2px solid rgba(255, 229, 153, 0.72);
+      box-shadow: inset 0 0 40px rgba(255,255,255,0.18), 0 28px 80px rgba(0,0,0,0.58);
+    }
+
+    .tower {
+      position: absolute;
+      bottom: 0;
+      width: 22%;
+      height: 82%;
+      border-radius: 22px 22px 10px 10px;
+      background: linear-gradient(145deg, #70440d, #d4a13a 42%, #ffe7a8 55%, #76440d);
+      border: 2px solid rgba(255, 229, 153, 0.72);
+      box-shadow: inset 0 0 34px rgba(255,255,255,0.16);
+    }
+
+    .tower.left { left: 1%; }
+    .tower.right { right: 1%; }
+
+    .roof {
+      position: absolute;
+      top: -70px;
+      left: 50%;
+      width: 0;
+      height: 0;
+      transform: translateX(-50%);
+      border-left: 58px solid transparent;
+      border-right: 58px solid transparent;
+      border-bottom: 90px solid #c58821;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.35));
+    }
+
+    .main-roof {
+      top: -88px;
+      border-left-width: 86px;
+      border-right-width: 86px;
+      border-bottom-width: 116px;
+      border-bottom-color: #e0ad42;
+    }
+
+    .window {
+      position: absolute;
+      width: 28px;
+      height: 48px;
+      border-radius: 999px 999px 6px 6px;
+      background: radial-gradient(circle at 50% 28%, #fff5b5, #d19428 58%, #4b2706 100%);
+      box-shadow: 0 0 22px rgba(255, 219, 110, 0.48);
+      opacity: 0.95;
+    }
+
+    .w1 { left: 22%; top: 34%; }
+    .w2 { right: 22%; top: 34%; }
+    .w3 { left: 48%; top: 28%; }
+
+    .door-frame {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 150px;
+      height: 210px;
+      transform: translateX(-50%);
+      border-radius: 84px 84px 0 0;
+      background: linear-gradient(145deg, #2b1403, #7c4a11);
+      border: 4px solid rgba(255, 222, 139, 0.92);
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 0 34px rgba(255, 220, 120, 0.24);
+    }
+
+    .door-frame::after {
+      content: 'ENTER';
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.8px;
+      color: rgba(255, 239, 184, 0.92);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .door {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, #7a460e, #d29a31, #73400c);
+      border: 1px solid rgba(255, 231, 162, 0.5);
+      transform-style: preserve-3d;
+      transition: transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+      z-index: 2;
+    }
+
+    .door.left {
+      left: 0;
+      transform-origin: left center;
+    }
+
+    .door.right {
+      right: 0;
+      transform-origin: right center;
+    }
+
+    .door-frame.open .door.left { transform: rotateY(-112deg); }
+    .door-frame.open .door.right { transform: rotateY(112deg); }
+
+    .door-knob {
+      position: absolute;
+      top: 52%;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #fff3b5;
+      box-shadow: 0 0 12px rgba(255,255,255,0.7);
+    }
+
+    .left .door-knob { right: 12px; }
+    .right .door-knob { left: 12px; }
+
+    .door-light {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 65%, rgba(255, 239, 169, 0.75), transparent 58%);
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      z-index: 1;
+    }
+
+    .door-frame.open .door-light { opacity: 1; }
+
+    .tap-note {
+      margin-top: -12px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: rgba(255, 240, 190, 0.72);
+      font-size: 14px;
+      animation: pulseText 1.6s ease-in-out infinite;
+    }
+
+    @keyframes pulseText {
+      0%, 100% { opacity: 0.65; }
+      50% { opacity: 1; }
+    }
+
+    .envelope-stage {
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(255, 232, 166, 0.36), transparent 34%),
+        radial-gradient(circle at 50% 58%, rgba(202, 139, 41, 0.20), transparent 35%),
+        linear-gradient(135deg, #090402, #160b04 60%, #030101);
+    }
+
+    .spotlight {
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      width: min(88vw, 520px);
+      height: 76vh;
+      transform: translateX(-50%);
+      background: linear-gradient(to bottom, rgba(255, 236, 181, 0.42), rgba(255, 223, 127, 0.1), transparent);
+      clip-path: polygon(42% 0, 58% 0, 100% 100%, 0 100%);
+      filter: blur(4px);
+      opacity: 0.88;
+      pointer-events: none;
+    }
+
+    .envelope-wrap {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      animation: floatEnvelope 2.6s ease-in-out infinite;
+      cursor: pointer;
+    }
+
+    @keyframes floatEnvelope {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-16px) rotate(1deg); }
+    }
+
+    .envelope {
+      position: relative;
+      width: min(78vw, 360px);
+      height: 230px;
+      margin: 0 auto;
+      filter: drop-shadow(0 32px 58px rgba(0, 0, 0, 0.55));
+    }
+
+    .envelope-body {
+      position: absolute;
+      inset: 46px 0 0;
+      border-radius: 18px;
+      background: linear-gradient(145deg, #f7e3ad, #b57a22 54%, #f9e7b8);
+      border: 2px solid rgba(255, 244, 198, 0.78);
+      overflow: hidden;
+    }
+
+    .envelope-body::before,
+    .envelope-body::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.34), rgba(84,45,5,0.12));
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+    }
+
+    .envelope-body::after {
+      right: 0;
+      transform: scaleX(-1);
+    }
+
+    .flap {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      width: 78%;
+      height: 120px;
+      transform: translateX(-50%);
+      background: linear-gradient(145deg, #fff0bd, #c58a2b 72%);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border-radius: 10px;
+      z-index: 2;
+    }
+
+    .seal {
+      position: absolute;
+      left: 50%;
+      top: 128px;
+      width: 62px;
+      height: 62px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, #fff2a7, #d39a2e 48%, #7d4008);
+      border: 2px solid rgba(255, 248, 210, 0.82);
+      box-shadow: 0 0 28px rgba(255, 221, 128, 0.42);
+      z-index: 4;
+    }
+
+    .envelope-title {
+      margin-top: 26px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      color: rgba(255, 245, 211, 0.76);
+      letter-spacing: 0.4px;
+    }
+
+    .sheet-screen {
       align-items: center;
+      overflow-y: auto;
+    }
+
+    .vintage-sheet {
+      position: relative;
+      z-index: 3;
+      width: min(94vw, 560px);
+      min-height: min(86vh, 760px);
+      padding: 34px 22px 24px;
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.48), transparent 20%),
+        linear-gradient(135deg, #fff5d5, #e0b96d 42%, #fff0be 72%, #b97921);
+      color: #3c2107;
+      border: 3px solid rgba(110, 67, 10, 0.35);
+      box-shadow: 0 44px 120px rgba(0, 0, 0, 0.65), inset 0 0 70px rgba(72, 38, 2, 0.12);
+      animation: sheetIn 0.9s ease both;
+    }
+
+    @keyframes sheetIn {
+      from { opacity: 0; transform: translateY(34px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .sheet-border {
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(91, 51, 8, 0.35);
+      border-radius: 18px;
+      pointer-events: none;
+    }
+
+    .sheet-header {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 20px;
+    }
+
+    .sheet-kicker {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: rgba(75, 43, 8, 0.72);
+      text-transform: uppercase;
+    }
+
+    .sheet-header h2 {
+      margin: 8px 0 6px;
+      font-size: clamp(28px, 5vw, 42px);
+      line-height: 1;
+      color: #3d2106;
+    }
+
+    .sheet-header p {
+      margin: 0 auto;
+      max-width: 410px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: rgba(56, 31, 6, 0.72);
+      font-size: 14px;
+      line-height: 1.45;
     }
 
     .card-frame {
       position: relative;
-      width: min(92vw, 520px);
-      padding: 14px;
-      border-radius: 38px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.05));
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      box-shadow: 0 38px 120px rgba(0, 0, 0, 0.62);
-      backdrop-filter: blur(18px);
-    }
-
-    .ticket-tag {
-      position: absolute;
-      top: -18px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 5;
-      padding: 10px 18px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, #ffcf6b, #ffffff);
-      color: #151018;
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-      box-shadow: 0 14px 34px rgba(255, 207, 107, 0.28);
-      white-space: nowrap;
+      z-index: 2;
+      width: min(100%, 440px);
+      margin: 0 auto;
+      padding: 10px;
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(81, 44, 5, 0.28), rgba(255, 255, 255, 0.34));
+      border: 1px solid rgba(64, 35, 5, 0.26);
+      box-shadow: 0 24px 64px rgba(75, 43, 8, 0.32);
     }
 
     .scratch-card {
       position: relative;
       width: 100%;
       aspect-ratio: 4 / 5;
-      border-radius: 28px;
+      border-radius: 22px;
       overflow: hidden;
       background: #111;
       touch-action: none;
@@ -207,8 +497,8 @@
     }
 
     .scratch-card.scratching {
-      transform: scale(1.012);
-      box-shadow: 0 0 44px rgba(255, 226, 143, 0.24);
+      transform: scale(1.01);
+      box-shadow: 0 0 44px rgba(123, 75, 7, 0.32);
     }
 
     .scratch-card.revealed {
@@ -273,17 +563,17 @@
     .hint {
       position: absolute;
       left: 50%;
-      bottom: 24px;
+      bottom: 22px;
       transform: translateX(-50%);
-      color: white;
-      background: rgba(8, 8, 20, 0.62);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 12px 18px;
+      color: #fff6cf;
+      background: rgba(49, 25, 3, 0.68);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 232, 154, 0.34);
+      padding: 11px 16px;
       border-radius: 999px;
-      font-size: 14px;
-      font-weight: 700;
-      letter-spacing: 0.2px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      font-weight: 800;
       pointer-events: none;
       transition: opacity 0.35s ease, transform 0.35s ease;
       animation: floatHint 1.8s ease-in-out infinite;
@@ -302,15 +592,7 @@
     .shine {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        115deg,
-        transparent 0%,
-        transparent 32%,
-        rgba(255, 255, 255, 0.32) 45%,
-        rgba(255, 226, 143, 0.3) 50%,
-        transparent 61%,
-        transparent 100%
-      );
+      background: linear-gradient(115deg, transparent 0%, transparent 32%, rgba(255,255,255,0.34) 45%, rgba(255,226,143,0.28) 50%, transparent 61%, transparent 100%);
       transform: translateX(-120%);
       pointer-events: none;
       animation: shineMove 2.3s ease-in-out infinite;
@@ -323,10 +605,14 @@
     }
 
     .instruction {
+      position: relative;
+      z-index: 2;
       text-align: center;
       margin-top: 14px;
-      color: rgba(255, 255, 255, 0.66);
+      font-family: Arial, Helvetica, sans-serif;
+      color: rgba(63, 34, 5, 0.72);
       font-size: 13px;
+      font-weight: 700;
     }
 
     .confetti-piece {
@@ -341,147 +627,139 @@
     }
 
     @keyframes confettiFall {
-      0% {
-        transform: translateY(-10vh) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(110vh) rotate(720deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
     }
 
-    .destination-pill {
-      position: absolute;
-      right: -22px;
-      bottom: 70px;
-      transform: rotate(-7deg);
-      z-index: 3;
-      padding: 12px 16px;
-      border-radius: 18px;
-      background: rgba(255, 255, 255, 0.13);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(14px);
-      color: rgba(255, 255, 255, 0.88);
-      font-size: 13px;
-      font-weight: 800;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
-      animation: badgeFloat 2.4s ease-in-out infinite;
-    }
-
-    @keyframes badgeFloat {
-      0%, 100% { transform: rotate(-7deg) translateY(0); }
-      50% { transform: rotate(-7deg) translateY(-8px); }
-    }
-
-    @media (max-width: 900px) {
+    @media (max-width: 760px) {
+      html,
       body {
         overflow-y: auto;
       }
 
-      .page {
-        align-items: flex-start;
-        padding-top: 34px;
-        padding-bottom: 34px;
+      .screen {
+        padding: 22px 14px;
       }
 
-      .wrap {
-        grid-template-columns: 1fr;
-        gap: 30px;
+      .castle-wrap {
+        width: 96vw;
+        height: 470px;
+        min-height: 360px;
       }
 
-      .content {
-        text-align: center;
+      .castle {
+        width: 92%;
       }
 
-      .subtitle {
-        margin: 0 auto;
+      .door-frame {
+        width: 126px;
+        height: 178px;
       }
 
-      .mini-row {
-        justify-content: center;
-      }
-
-      .destination-pill {
-        right: 4px;
-        bottom: 54px;
+      .vintage-sheet {
+        min-height: auto;
+        padding: 30px 14px 22px;
       }
     }
 
-    @media (max-width: 480px) {
-      .page {
-        padding: 26px 14px;
+    @media (max-width: 420px) {
+      .castle-wrap {
+        height: 410px;
       }
 
-      .card-frame {
-        padding: 10px;
-        border-radius: 32px;
+      .window {
+        width: 22px;
+        height: 38px;
       }
 
-      .scratch-card {
-        border-radius: 24px;
+      .roof {
+        border-left-width: 44px;
+        border-right-width: 44px;
+        border-bottom-width: 76px;
+        top: -58px;
       }
 
-      .ticket-tag {
-        font-size: 11px;
-      }
-
-      .mini-card {
-        min-width: 120px;
+      .main-roof {
+        border-left-width: 68px;
+        border-right-width: 68px;
+        border-bottom-width: 94px;
+        top: -72px;
       }
     }
   </style></head>
 <body>
   <main class="page">
-    <div class="orb one"></div>
-    <div class="orb two"></div>
-    <div class="orb three"></div><section class="wrap">
-  <div class="content">
-    <div class="eyebrow">✨ Official Event Reveal</div>
-    <h1>
-      Your next team escape<br />
-      is waiting to be <span class="gradient-text">revealed.</span>
-    </h1>
-    <p class="subtitle">
-      Scratch the card to unlock your corporate event invitation and discover the destination planned for the team.
-    </p>
+    <div class="gold-dust"></div><section class="screen castle-screen active" id="castleScreen">
+  <div class="intro-copy">
+    <div class="eyebrow">Luxury Corporate Reveal</div>
+    <h1>Unlock the <span class="gold-text">Golden Invitation</span></h1>
+    <p class="subtitle">A destination awaits behind the castle doors. Tap the door to begin the reveal.</p>
+  </div>
 
-    <div class="mini-row">
-      <div class="mini-card">
-        <strong>Invitation</strong>
-        <span>Hidden inside</span>
-      </div>
-      <div class="mini-card">
-        <strong>Destination</strong>
-        <span>Reveal surprise</span>
-      </div>
-      <div class="mini-card">
-        <strong>Team Event</strong>
-        <span>Let the countdown begin</span>
+  <div class="castle-wrap">
+    <div class="castle">
+      <div class="tower left"><div class="roof"></div></div>
+      <div class="tower right"><div class="roof"></div></div>
+      <div class="castle-base">
+        <div class="roof main-roof"></div>
+        <div class="window w1"></div>
+        <div class="window w2"></div>
+        <div class="window w3"></div>
+        <div class="door-frame" id="castleDoor">
+          <div class="door-light"></div>
+          <div class="door left"><div class="door-knob"></div></div>
+          <div class="door right"><div class="door-knob"></div></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="card-area">
-    <div class="card-frame">
-      <div class="ticket-tag">Scratch To Unlock</div>
-      <div class="destination-pill">Boarding soon ✈️</div>
+  <div class="tap-note">Tap the castle door</div>
+</section>
 
+<section class="screen envelope-stage" id="envelopeScreen">
+  <div class="spotlight"></div>
+  <div class="envelope-wrap" id="envelopeWrap">
+    <div class="envelope">
+      <div class="flap"></div>
+      <div class="envelope-body"></div>
+      <div class="seal"></div>
+    </div>
+    <div class="envelope-title">Tap the floating envelope to open your invitation</div>
+  </div>
+</section>
+
+<section class="screen sheet-screen" id="sheetScreen">
+  <div class="vintage-sheet">
+    <div class="sheet-border"></div>
+    <div class="sheet-header">
+      <div class="sheet-kicker">Private Invitation</div>
+      <h2>The Reveal Awaits</h2>
+      <p>Scratch the golden card to uncover the event invitation and destination.</p>
+    </div>
+
+    <div class="card-frame">
       <section class="scratch-card" id="scratchCard">
-        <!-- Replace reward.png with your invitation/destination PNG image -->
+        <!-- Replace reward.png with your final invitation/destination PNG image -->
         <img class="reward-image" src="reward.png" alt="Corporate event invitation reveal" />
         <canvas id="scratchCanvas"></canvas>
         <div class="scratch-glow" id="scratchGlow"></div>
         <div class="shine" id="shine"></div>
-        <div class="hint" id="hint">Scratch the silver pass</div>
+        <div class="hint" id="hint">Scratch the gold card</div>
       </section>
-
-      <div class="instruction">Use your finger or mouse. Complete around 6 real swipes to reveal.</div>
     </div>
+
+    <div class="instruction">Use your finger or mouse. Complete around 6 real swipes to reveal.</div>
   </div>
 </section>
 
   </main>  <script>
+    const castleScreen = document.getElementById('castleScreen');
+    const envelopeScreen = document.getElementById('envelopeScreen');
+    const sheetScreen = document.getElementById('sheetScreen');
+    const castleDoor = document.getElementById('castleDoor');
+    const envelopeWrap = document.getElementById('envelopeWrap');
+
     const card = document.getElementById('scratchCard');
     const canvas = document.getElementById('scratchCanvas');
     const ctx = canvas.getContext('2d');
@@ -495,6 +773,21 @@
     let revealStarted = false;
     let strokeDistance = 0;
     let completedStrokes = 0;
+
+    function showScreen(screen) {
+      [castleScreen, envelopeScreen, sheetScreen].forEach(item => item.classList.remove('active'));
+      screen.classList.add('active');
+    }
+
+    castleDoor.addEventListener('click', () => {
+      castleDoor.classList.add('open');
+      setTimeout(() => showScreen(envelopeScreen), 1150);
+    });
+
+    envelopeWrap.addEventListener('click', () => {
+      showScreen(sheetScreen);
+      setTimeout(setupCanvas, 120);
+    });
 
     function setupCanvas() {
       const rect = card.getBoundingClientRect();
@@ -511,11 +804,12 @@
 
     function drawScratchLayer(width, height) {
       const gradient = ctx.createLinearGradient(0, 0, width, height);
-      gradient.addColorStop(0, '#f7f7f7');
-      gradient.addColorStop(0.22, '#b8b8b8');
-      gradient.addColorStop(0.48, '#e5e5e5');
-      gradient.addColorStop(0.72, '#8c8c8c');
-      gradient.addColorStop(1, '#f0f0f0');
+      gradient.addColorStop(0, '#fff2b2');
+      gradient.addColorStop(0.18, '#b87516');
+      gradient.addColorStop(0.38, '#f5cc62');
+      gradient.addColorStop(0.58, '#fff6c8');
+      gradient.addColorStop(0.78, '#9b5c0d');
+      gradient.addColorStop(1, '#ffe08a');
 
       ctx.globalCompositeOperation = 'source-over';
       ctx.fillStyle = gradient;
@@ -528,7 +822,7 @@
         ctx.fill();
       }
 
-      ctx.strokeStyle = 'rgba(255,255,255,0.24)';
+      ctx.strokeStyle = 'rgba(255,255,255,0.22)';
       ctx.lineWidth = 1;
       for (let i = -height; i < width; i += 22) {
         ctx.beginPath();
@@ -537,14 +831,14 @@
         ctx.stroke();
       }
 
-      ctx.fillStyle = 'rgba(7, 7, 18, 0.38)';
-      ctx.font = '900 30px Arial';
+      ctx.fillStyle = 'rgba(48, 25, 3, 0.48)';
+      ctx.font = '900 29px Arial';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText('SCRATCH TO REVEAL', width / 2, height / 2 - 10);
 
       ctx.font = '700 15px Arial';
-      ctx.fillText('Your invitation is hidden inside', width / 2, height / 2 + 32);
+      ctx.fillText('Your destination is hidden inside', width / 2, height / 2 + 32);
     }
 
     function getPointerPosition(event) {
@@ -601,18 +895,18 @@
     }
 
     function createConfetti() {
-      const colors = ['#ffcf6b', '#ffffff', '#7ee7ff', '#a97cff', '#ff6fae'];
+      const colors = ['#ffcf6b', '#ffffff', '#ffe8a3', '#b87918', '#fff7cf'];
 
-      for (let i = 0; i < 90; i++) {
+      for (let i = 0; i < 100; i++) {
         const piece = document.createElement('div');
         piece.className = 'confetti-piece';
         piece.style.left = `${Math.random() * 100}vw`;
         piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-        piece.style.animationDelay = `${Math.random() * 0.6}s`;
+        piece.style.animationDelay = `${Math.random() * 0.7}s`;
         piece.style.transform = `rotate(${Math.random() * 360}deg)`;
         document.body.appendChild(piece);
 
-        setTimeout(() => piece.remove(), 3400);
+        setTimeout(() => piece.remove(), 3600);
       }
     }
 
@@ -664,9 +958,7 @@
     });
 
     window.addEventListener('resize', () => {
-      if (!revealStarted) setupCanvas();
+      if (!revealStarted && sheetScreen.classList.contains('active')) setupCanvas();
     });
-
-    setupCanvas();
   </script></body>
 </html>
